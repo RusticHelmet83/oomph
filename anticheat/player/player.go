@@ -425,12 +425,8 @@ func (p *Player) RawMessage(msg string) {
 	})
 }
 
-func (p *Player) Popup(msg string, args ...interface{}) {
-	p.SendPacketToClient(&packet.Text{
-		TextType: packet.TextTypePopup,
-		Message:  text.Colourf(msg, args...),
-	})
-}
+// Popups are disabled: they only displayed anticheat rejections to players.
+func (p *Player) Popup(msg string, args ...interface{}) {}
 
 // Log returns the player's logger.
 func (p *Player) Log() *slog.Logger {

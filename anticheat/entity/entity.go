@@ -74,7 +74,9 @@ func New(c Config) *Entity {
 	}
 	offset := networkOffset(c.Type, metadata)
 	pos := c.NetworkPosition
-	pos[1] -= offset
+	// Dragonfly sends the entity's real (feet) position in AddPlayer/AddActor/AddItemActor.
+	// Only the later move packets include the network offset (MoveEntity already removes it),
+	// so the spawn position must not have it subtracted.
 
 	e := &Entity{
 		RuntimeId: c.RuntimeID,
